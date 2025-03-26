@@ -29,7 +29,7 @@ public class ExchangeRateService {
             }else{
                 ErrorLogger.logError('ExchangeRateService' + ':getLatestRates()', 'Error: Received status code: ' + response.getStatusCode() + ' - ' + response.getBody());
             }
-        }catch(Exception e){
+        }catch(Exception ex){
             ErrorLogger.logError('ExchangeRateService' + ':getLatestRates()', ex);
         }
         
