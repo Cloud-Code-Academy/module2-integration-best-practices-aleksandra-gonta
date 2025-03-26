@@ -11,7 +11,8 @@ global class ExchangeRateScheduler implements Schedulable {
     global void execute(SchedulableContext context) {
         try {
             ExchangeRateService.updateExchangeRates();
-        } catch (Exception e) {
+        } catch (Exception ex) {
+            ErrorLogger.logError('ExchangeRateScheduler', ex);
         }
     }
 }

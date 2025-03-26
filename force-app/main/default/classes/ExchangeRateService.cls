@@ -27,14 +27,10 @@ public class ExchangeRateService {
             if (response.getStatusCode() >= 200 && response.getStatusCode() < 300) {
                 responseBody = response.getBody();
             }else{
-                throw new ExchangeRateException(
-                'Error: Received status code: ' + response.getStatusCode() + ' - ' + response.getBody()
-            );
+                ErrorLogger.logError('ExchangeRateService' + ':getLatestRates()', 'Error: Received status code: ' + response.getStatusCode() + ' - ' + response.getBody());
             }
         }catch(Exception e){
-            throw new ExchangeRateException(
-                'Error: ' + e.getMessage()
-            );
+            ErrorLogger.logError('ExchangeRateService' + ':getLatestRates()', ex);
         }
         
         return ExchangeRateWrapper.parse(responseBody);
@@ -63,8 +59,4 @@ public class ExchangeRateService {
         
         return processedRates;
     }
-
-
-public class ExchangeRateException extends Exception{}
-
 }
